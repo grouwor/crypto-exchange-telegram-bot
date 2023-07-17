@@ -1,8 +1,8 @@
-const Telegraf = require('telegraf');
-const Markup = require('telegraf/markup');
-const moment = require('moment');
-require('dotenv').config()
+import { Telegraf, Markup } from 'telegraf';
+import moment from 'moment';
+import dotenv from 'dotenv';
 
+dotenv.config()
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
 const bot = new Telegraf(BOT_TOKEN);
@@ -90,6 +90,10 @@ bot.command('orders', (ctx) => {
     }
   }
 });
+
+bot.command('getid', (ctx) => {
+    ctx.reply(`Here is your CHAT_ID: ${ctx.chat.id}`);
+})
 
 bot.action(/approve_(\d+)/, (ctx) => {
   if (ctx.chat.id === adminChatId) {
